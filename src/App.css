@@ -1,4 +1,6 @@
-
+.app {
+  margin: 20px;
+}
 
 .flexContainer {
   display: grid;
@@ -13,4 +15,16 @@
   border-color: gainsboro;
   border-style: solid;
   padding: 10px; */
+}
+
+.radioButtonGroup {
+  padding: 10px;
+}
+
+#radioButtonTitle {
+  margin-bottom: 0;
+}
+
+.radioButton {
+  margin-left: 1em;
 }
