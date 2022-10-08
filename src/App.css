@@ -2,6 +2,10 @@
   margin: 20px;
 }
 
+.button {
+  margin: 10px;
+}
+
 .flexContainer {
   display: grid;
   grid-template-columns: repeat(auto-fill, 14rem);

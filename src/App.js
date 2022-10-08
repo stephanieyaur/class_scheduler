@@ -1,10 +1,10 @@
 import './App.css';
 import Banner from './components/Banner';
 import CourseList from './components/CourseList';
+import Modal from './components/Modal';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
-
 
 // Variables
 var queryClient = new QueryClient();
@@ -25,6 +25,8 @@ export const useJsonQuery = (url) => {
 // Components
 const Main = () => {
   const [selectedTerm, setSelectedTerm] = useState('Fall');
+  const [selectedClasses, setSelectedClasses] = useState([]);
+  const [open, setOpen] = useState(false);
   const url = "https://courses.cs.northwestern.edu/394/guides/data/cs-courses.php";
   var [data, isLoading, error] = useJsonQuery(url);
   if (error) return <h1>Error loading user data: {`${error}`}</h1>;
@@ -34,7 +36,9 @@ const Main = () => {
     <div>
       <Banner text={data.title} />
       {RadioButtons({selectedTerm, setSelectedTerm})}
-      <CourseList courseJson={data.courses} selectedTerm={selectedTerm} />
+      <button type="button" class="btn btn-primary button" onClick={() => setOpen(true)}>Course Plan</button>
+      <CourseList courseJson={data.courses} selectedTerm={selectedTerm} selectedClasses={selectedClasses} setSelectedClasses={setSelectedClasses}/>
+      <Modal open={open} setOpen={setOpen} selectedCourses={selectedClasses} courseJson={data.courses} />
     </div>
   )
 }

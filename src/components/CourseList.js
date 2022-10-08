@@ -1,9 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 
-const CourseList = ({ courseJson,selectedTerm }) => {
+const CourseList = ({ courseJson,selectedTerm,selectedClasses,setSelectedClasses }) => {
+    console.log(selectedClasses);
     var courses = Object.keys(courseJson);
-    const [selectedClasses, setSelectedClasses] = useState([]);
     return (
         <div className="flexContainer">
             {courses.filter(course => courseJson[course].term == selectedTerm).map(course =>
