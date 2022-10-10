@@ -26,6 +26,7 @@ export const useJsonQuery = (url) => {
 const Main = () => {
   const [selectedTerm, setSelectedTerm] = useState('Fall');
   const [selectedClasses, setSelectedClasses] = useState([]);
+  const [selectedClassesMeets, setSelectedClassesMeets] = useState([]);
   const [open, setOpen] = useState(false);
   const url = "https://courses.cs.northwestern.edu/394/guides/data/cs-courses.php";
   var [data, isLoading, error] = useJsonQuery(url);
@@ -37,7 +38,7 @@ const Main = () => {
       <Banner text={data.title} />
       {RadioButtons({selectedTerm, setSelectedTerm})}
       <button type="button" class="btn btn-primary button" onClick={() => setOpen(true)}>Course Plan</button>
-      <CourseList courseJson={data.courses} selectedTerm={selectedTerm} selectedClasses={selectedClasses} setSelectedClasses={setSelectedClasses}/>
+      <CourseList courseJson={data.courses} selectedTerm={selectedTerm} selectedClasses={selectedClasses} setSelectedClasses={setSelectedClasses} selectedClassesMeets={selectedClassesMeets} setSelectedClassesMeets={setSelectedClassesMeets}/>
       <Modal open={open} setOpen={setOpen} selectedCourses={selectedClasses} courseJson={data.courses} />
     </div>
   )
