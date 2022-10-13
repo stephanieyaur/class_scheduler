@@ -5,6 +5,8 @@ import Modal from './components/Modal';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CourseForm from './components/CourseForm';
 
 // Variables
 var queryClient = new QueryClient();
@@ -38,7 +40,14 @@ const Main = () => {
       <Banner text={data.title} />
       {RadioButtons({selectedTerm, setSelectedTerm})}
       <button type="button" class="btn btn-primary button" onClick={() => setOpen(true)}>Course Plan</button>
-      <CourseList courseJson={data.courses} selectedTerm={selectedTerm} selectedClasses={selectedClasses} setSelectedClasses={setSelectedClasses} selectedClassesMeets={selectedClassesMeets} setSelectedClassesMeets={setSelectedClassesMeets}/>
+      <CourseList 
+        courseJson={data.courses} 
+        selectedTerm={selectedTerm} 
+        selectedClasses={selectedClasses} 
+        setSelectedClasses={setSelectedClasses} 
+        selectedClassesMeets={selectedClassesMeets} 
+        setSelectedClassesMeets={setSelectedClassesMeets}
+        />
       <Modal open={open} setOpen={setOpen} selectedCourses={selectedClasses} courseJson={data.courses} />
     </div>
   )
@@ -58,12 +67,25 @@ const RadioButtons = ({ selectedTerm, setSelectedTerm }) => (
     }  
   </div>
 )
-const App = () => (
-  <div className="app">
-    <QueryClientProvider client={queryClient}>
-      <Main />
-    </QueryClientProvider>
-  </div>
-);
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+          <Route path="/" element={
+            <div className="app">
+              <QueryClientProvider client={queryClient}>
+                <Main />
+              </QueryClientProvider>
+            </div>
+          } />
+          <Route path="/edit-course" element={
+            <div className="app">
+              <CourseForm />
+            </div>
+          } />
+      </Routes>
+    </BrowserRouter>
+  )
+};
 
 export default App;
