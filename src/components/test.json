@@ -1,0 +1,23 @@
+{
+    ‘name’: ‘Chicago, Illinois’, 
+    ‘url’: ‘https://chicago.gov/’,
+    ‘image’: 
+        {
+            ‘name’: 
+            ‘Chicago, Illinois’, 
+            ‘thumbnailUrl’: ‘https://www.bing.com/th?'image': {‘name’: ‘Chicago, 		Illinois’, ‘thumbnailUrl’: ‘https://www.bing.com/th?id=AMMS_71fb92fd86c0933580c53e8c03d4831a&w=110&h=110&c=7&rs=1&qlt=80&cdv=1&pid=16.1’, 	
+            ‘provider’: 
+                [
+                    {
+                        ‘_type’: ‘Organization’, 
+                        ‘url’: ’http://en.wikipedia.org/wiki/Chicago'
+                    }
+                ], 
+            ‘hostPageUrl’: ‘http://	upload.wikimedia.org/wikipedia/commons/a/ab/Buildings-1804479_1920.jpg’, 
+            ‘width’: 110, 
+            ‘height’: 110, 
+            ‘sourceWidth’: 474, 
+            ‘sourceHeight’: 266
+        },
+    ‘description’: ‘Chicago is the most populous city in the U.S. state of Illinois, and the third-most populous in the United States, following New York City and Los Angeles. With a population of 2,746,388 in the 2020 census, it is the most populous city in the Midwestern United States. Chicago, the county seat of Cook County, is the center of the Chicago metropolitan area, one of the largest in the world.’
+}

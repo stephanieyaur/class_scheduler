@@ -5,9 +5,8 @@ export const useFormData = (validator = null, values = {}) => {
 
   const change = (evt) => {
     const { id, value } = evt.target;
-    const error = validator ? validator(id, value) : '';
+    const error = validator ? validator(id, value, state.values.courseNum, state.values.selectedClasses, state.values.selectedClassesMeets) : '';
     evt.target.setCustomValidity(error);
-    
     const values = {...state.values, [id]: value};
     const errors = {...state.errors, [id]: error};
     const hasError = Object.values(errors).some(x => x !== '');
