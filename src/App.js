@@ -7,6 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CourseForm from './components/CourseForm';
+import { useDbData,useDbUpdate } from './utility/firebase.js';
 
 // Variables
 var queryClient = new QueryClient();
@@ -30,10 +31,14 @@ const Main = () => {
   const [selectedClasses, setSelectedClasses] = useState([]);
   const [selectedClassesMeets, setSelectedClassesMeets] = useState([]);
   const [open, setOpen] = useState(false);
-  const url = "https://courses.cs.northwestern.edu/394/guides/data/cs-courses.php";
-  var [data, isLoading, error] = useJsonQuery(url);
+  // const url = "https://courses.cs.northwestern.edu/394/guides/data/cs-courses.php";
+  // var [dataFetch, isLoadingFetch, errorFetch] = useJsonQuery(url);
+  // if (error) return <h1>Error loading user data: {`${error}`}</h1>;
+  // if (isLoading) return <h1>Loading user data...</h1>;
+  // const [update, result] = useDbUpdate(`/courses`);
+  // update(dataFetch);
+  const [data, error] = useDbData(`/`);
   if (error) return <h1>Error loading user data: {`${error}`}</h1>;
-  if (isLoading) return <h1>Loading user data...</h1>;
   if (!data) return <h1>No user data found</h1>;
   return (
     <div>
