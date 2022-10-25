@@ -8,11 +8,11 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CourseForm from './components/CourseForm';
 import { useDbData,useDbUpdate } from './utility/firebase.js';
+import Navigation from './components/Navigation';
+import { useAuthState } from './utility/firebase';
 
 // Variables
 var queryClient = new QueryClient();
-const terms = ['Fall', 'Winter', 'Spring'];
-
 
 // Functions
 const fetchJson = async (url) => {
@@ -26,7 +26,7 @@ export const useJsonQuery = (url) => {
 };
 
 // Components
-const Main = () => {
+const Main = ({user}) => {
   const [selectedTerm, setSelectedTerm] = useState('Fall');
   const [selectedClasses, setSelectedClasses] = useState([]);
   const [selectedClassesMeets, setSelectedClassesMeets] = useState([]);
@@ -42,8 +42,7 @@ const Main = () => {
   if (!data) return <h1>No user data found</h1>;
   return (
     <div>
-      <Banner text={data.title} />
-      {RadioButtons({selectedTerm, setSelectedTerm})}
+      <Navigation title={data.title} selectedTerm={selectedTerm} setSelectedTerm={setSelectedTerm} user={user} />
       <button type="button" class="btn btn-primary button" onClick={() => setOpen(true)}>Course Plan</button>
       <CourseList 
         courseJson={data.courses} 
@@ -52,34 +51,22 @@ const Main = () => {
         setSelectedClasses={setSelectedClasses} 
         selectedClassesMeets={selectedClassesMeets} 
         setSelectedClassesMeets={setSelectedClassesMeets}
+        user={user}
         />
       <Modal open={open} setOpen={setOpen} selectedCourses={selectedClasses} courseJson={data.courses} />
     </div>
   )
 }
-const RadioButtons = ({ selectedTerm, setSelectedTerm }) => (
-  <div className="radioButtonGroup">
-    <p id="radioButtonTitle">Filter by term:</p>
-    {
-      terms.map(term => 
-        (
-          <div className="radioButton">
-            <input type="radio" id={term} checked={selectedTerm === term} autoComplete="off" onChange={() => setSelectedTerm(term)} />
-            <label className='' htmlFor={term}>{term}</label>
-          </div>
-        )
-      )
-    }  
-  </div>
-)
+
 const App = () => {
+  const [user, setUser] = useAuthState();
   return (
     <BrowserRouter>
       <Routes>
           <Route path="/" element={
             <div className="app">
               <QueryClientProvider client={queryClient}>
-                <Main />
+                <Main user={user} />
               </QueryClientProvider>
             </div>
           } />

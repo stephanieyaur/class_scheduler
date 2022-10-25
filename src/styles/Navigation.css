@@ -1,0 +1,30 @@
+.nav {
+    padding-left: 1em;
+    padding-right: 1em;
+    background-color: rgb(67, 31, 129, 0.8)!important;
+}
+
+#title {
+    font-size: x-large;
+    color: white;
+}
+
+.navlink {
+    cursor: pointer;
+    font-size: medium;
+    color: rgb(187, 163, 187);
+    font-weight: 600;
+}
+
+.active {
+    color: white !important;
+    font-weight: 700;
+}
+
+#welcome {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 1em;
+    font-style: italic;
+    color: rgb(187, 163, 187);
+}
