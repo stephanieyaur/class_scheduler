@@ -11,7 +11,7 @@ const SignOutButton = () => (
     <button className="ms-auto btn btn-dark" onClick={signOut}>Sign out</button>
 );
 
-const Navigation = ({ title, selectedTerm, setSelectedTerm, user }) => {
+const Navigation = ({ title, selectedTerm, setSelectedTerm, profile }) => {
     return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light nav">
         <a class="navbar-brand" id="title">{title}</a>
@@ -29,8 +29,8 @@ const Navigation = ({ title, selectedTerm, setSelectedTerm, user }) => {
             }
             </div>
         </div>
-        {user ? <p class="ms-auto" id="welcome">Welcome, {user.displayName}</p> : null}
-        {user ? <SignOutButton /> : <SignInButton />}
+        {profile?.user ? <p class="ms-auto" id="welcome">Welcome, {profile.user.displayName}</p> : null}
+        {profile.user ? <SignOutButton /> : <SignInButton />}
     </nav>
 )}   
 
